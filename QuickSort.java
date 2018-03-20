@@ -3,15 +3,21 @@ import java.util.Random;
 /**
  * Created by per on 2018/1/27.
  */
+/*
+ *快速排序的基本逻辑是，随机打乱待排序序列（这主要是为了避免O(n2)的最糟糕情况），在排好一个位置，使这个元素左边的位置都不大于这个元素，使这个元素右边的元素都不小于这个元素。
+ *并在选定位置的左边与右边再次进行迭代操作
+ */
 
 public class Draft {
     public void quickSortNoReturn(int[] nums) {
+        // 自己想的方法，直接在sortHelp里边实现快排序迭代，没有返回值
         int len = nums.length;
         if(len <= 1) return;
         sortHelp(nums, 0, len - 1);
     }
 
     public void quickSortNormal(int[] nums, int left, int right) {
+        // 这是《剑指offer》上的方法，一方面避免了相同元素带来的多次交换，一方面partitionSword（）函数可以用于得到无序序列里边第k大的值
         if(nums == null || left>= right) return;
         int index = partitionSword(nums, left, right);
         quickSortNormal(nums, left, index - 1);
