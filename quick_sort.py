@@ -10,12 +10,16 @@ def quick_sort(nums, start, end):
 
 def partition(nums, start, end):
     val = nums[start]
-    while start < end:
+    while True:
         while nums[end] >= val and start < end:
             end -= 1
+        if start == end:
+            break
         nums[start] = nums[end]
         while nums[start] <= val and start < end:
             start += 1
+        if start == end:
+            break
         nums[end] = nums[start]
     nums[start] = val
     return start
